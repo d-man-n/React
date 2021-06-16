@@ -1,4 +1,7 @@
 //5
+
+import * as React from 'react';
+
 function HomeComponent(props: { firstProp: string }) {
     return (
         <div>
@@ -17,9 +20,9 @@ interface IProps {
 const t = TMyType<typeof HomeComponent>;
 
 
-// import * as React from 'react';
-// const Component = (props: { color: string }) => <div {...props} />;
-// type Props = React.ElementConfig<typeof Component>;
+
+
+type props = React.ComponentType<typeof HomeComponent>;
 
 //6
 
