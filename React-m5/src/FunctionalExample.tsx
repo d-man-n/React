@@ -1,9 +1,13 @@
 import React from "react";
+import { pickFromSyntheticEvent } from "./utils/react/pickFromSyntheticEvent";
 import { preventDefault } from "./utils/react/preventDefault";
 import { stopPropagation } from "./utils/react/stopPropagation";
 
+// function add(leftSide: number) {
+//     return (rightSide: number) => leftSide + rightSide;
+// }
 
-
+const add = (leftSide: number) => (rightSide: number) => leftSide + rightSide;
 
 const withIdKey = withKey('id');
 
@@ -31,7 +35,7 @@ function withKey(key?: string) {
         (props: E, index: number) =>
             React.createElement(
                 component,
-                 {...props, key: key ? props[key as keyof E] : index },
+                 {...props, key: key ? String(props[key as keyof E]) : index },
                 [],
             );
 }
@@ -46,13 +50,6 @@ function Checkbox(props: {onChange: (value: boolean) => void, value: boolean}) {
     return (
         <input type="checkbox" checked={props.value} onChange={getChecked(props.onChange)} />
     )
-}
-
-function pickFromSyntheticEvent<T extends HTMLElement>() {
-    return <K extends keyof T>(key: K) => 
-        <E extends ((t: T[K]) => void)>(fn: E) => 
-            (e: React.SyntheticEvent<T>) => 
-                fn(e.currentTarget[key]);
 }
 
 export const getValue = pickFromSyntheticEvent<HTMLInputElement>()('value')
