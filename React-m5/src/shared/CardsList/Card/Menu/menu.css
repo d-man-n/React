@@ -34,6 +34,31 @@
   width: 100%;
 }
 
+.menuList {
+  position: absolute;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 2px 3px 4px #989898;
+  z-index: 10;
+  left: -50px;
+  margin-top: 10px;
+}
+
+.menuList li:not(:last-child) {
+  border-bottom: 1px solid #989898;
+}
+
+.menuList li {
+  padding: 5px 0;
+  transition: background-color .2s ease-in-out, color .2s linear;
+}
+
+.menuList li:hover {
+  background-color: #bebebe;
+  color: #fff;
+}
+
+
 @media all and (min-width: 1024px) {
   .menu {
     position: relative;
