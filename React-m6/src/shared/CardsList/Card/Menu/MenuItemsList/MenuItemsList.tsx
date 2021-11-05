@@ -12,7 +12,7 @@ export function MenuItemsList({ postId }: IMenuItemsListProps) {
     return (
         <ul className={styles.menuItemsList}>
             <li className={styles.menuItem} onClick={() => console.log(postId)}>
-                <Icon Name={EIcons.comments} size={12} />
+                <Icon Name={EIcons.comments} size={28} />
                 <Text size={12} color={EColor.grey99}>Комментарии</Text>
             </li>
             <div className={styles.divider} />

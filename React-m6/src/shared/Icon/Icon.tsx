@@ -37,6 +37,6 @@ export function Icon({Name, size=14}: IIconProps) {
     );
 
     return (
-        <Icon />
+        <Icon className={classes}/>
     );
 }
