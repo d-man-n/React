@@ -22,7 +22,7 @@ export function MenuItemsList({ postId }: IMenuItemsListProps) {
             </li>
             <div className={styles.divider} />
             <li className={styles.menuItem}>
-                <Icon Name={EIcons.block} size={12} />
+                <Icon Name={EIcons.block} size={10} />
                 <Text size={12} color={EColor.grey99}>Скрыть</Text>
             </li>
             <div className={styles.divider} />

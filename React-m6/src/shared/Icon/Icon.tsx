@@ -35,7 +35,7 @@ export function Icon({Name, size=14}: IIconProps) {
     const classes = classNames(
         styles[`s${size}`]
     );
-
+        console.log(classes);
     return (
         <Icon className={classes}/>
     );
