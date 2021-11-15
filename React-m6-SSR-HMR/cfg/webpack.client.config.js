@@ -1,16 +1,25 @@
 const path = require('path');
+const { HotModuleReplacementPlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 
 module.exports = {
     mode: 'development',
-    entry: path.resolve(__dirname, '../src/client/index.jsx'),
+    entry: [
+        path.resolve(__dirname, '../src/client/index.jsx'),
+        'webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr',
+    ],
     output: {
         filename: 'client.js',
         path: path.resolve(__dirname, '../dist/client'),
+        publicPath: "/static/",
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+        alias: {
+            'react-dom': '@hot-loader/react-dom',
+        }
     },
     module: {
         rules: [
@@ -44,4 +53,9 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HotModuleReplacementPlugin(),
+    ]
 };

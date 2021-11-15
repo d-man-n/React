@@ -1,17 +1,19 @@
 const path = require('path');
-
+const nodeExternals = require('webpack-node-externals');
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 
 module.exports = {
+    target: "node",
     mode: 'development',
-    entry: path.resolve(__dirname, '../src/client/index.jsx'),
+    entry: path.resolve(__dirname, '../src/server/server.js'),
     output: {
-        filename: 'client.js',
-        path: path.resolve(__dirname, '../dist/client'),
+        path: path.resolve(__dirname, '../dist/server'),
+        filename: 'server.js',
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
     },
+    externals: [nodeExternals()],
     module: {
         rules: [
             // { 
@@ -44,4 +46,7 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        minimize: false,
+    }
 };
