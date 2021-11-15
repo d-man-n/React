@@ -14,15 +14,10 @@ module.exports = {
     },
     module: {
         rules: [
-            // { 
-            //     test: /\.[jt]sx?$/, 
-            //     loader: "ts-loader",
-            // },
-            {
-                test: /\.(js|jsx)/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-              },
+            { 
+                test: /\.[jt]sx?$/, 
+                use: ['ts-loader'],
+            },
             {
                 test: /\.css$/,
                 use: [

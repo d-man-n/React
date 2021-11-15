@@ -11,7 +11,10 @@ interface IUserBlockProps {
 
 export function UserBlock({ avtarSrc, username }: IUserBlockProps) {
     return (
-        <a className={styles.userBox}>
+        <a 
+            href="https://www.reddit.com/api/v1/authorize?client_id=4wjPw9ijdCQB9Bx-c4RMyg&response_type=token&state=random_string&redirect_uri=http://localhost:9000/&scope=read submit identity" 
+            className={styles.userBox}
+        >
             <div className={styles.avatarBox}>
                 {avtarSrc
                     ? <img src={avtarSrc} alt="user" className={styles.avatarImage} />

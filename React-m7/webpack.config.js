@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 const path = require('path');
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 
@@ -48,5 +49,6 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             }
         ]
-    }
+    },
+    plugins: [ new DefinePlugin({'process.env.CLIENT_ID' : `'${process.env.CLIENT_ID}'`})],
 };

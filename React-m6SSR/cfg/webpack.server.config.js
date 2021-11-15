@@ -16,34 +16,25 @@ module.exports = {
     externals: [nodeExternals()],
     module: {
         rules: [
-            // { 
-            //     test: /\.[jt]sx?$/, 
-            //     loader: "ts-loader",
-            // },
-            {
-                test: /\.(js|jsx)/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-              },
+            { 
+                test: /\.[jt]sx?$/, 
+                use: ['ts-loader'],
+            },
             {
                 test: /\.css$/,
                 use: [
-                    "style-loader", {
+                    {
                         loader: 'css-loader',
                         options: {
                             modules: {
                                 mode: 'local',
                                 localIdentName: '[name]__[local]--[hash:base64:5]',
-                            }
+                            },
+                            onlyLocals: true,
                         }
                     },
                 ],
-                exclude: GLOBAL_CSS_REGEXP
             },
-            {
-                test: GLOBAL_CSS_REGEXP,
-                use: ['style-loader', 'css-loader']
-            }
         ]
     },
     optimization: {
