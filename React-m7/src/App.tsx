@@ -29,10 +29,10 @@ function AppComponent() {
 
     return (
         <Layout>
-            {/* <Header /> */}
-            {/* <Content> */}
-                {/* <CardsList /> */}
-            {/* </Content> */}
+            <Header />
+            <Content>
+                <CardsList />
+            </Content>
         </Layout>
     );
 }

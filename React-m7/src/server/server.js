@@ -11,7 +11,15 @@ app.use('/static', express.static('./dist/client'))
 app.get('/', (req,res)=>{
     res.send(
         //в корень шаблон указываем рендер react-компонентов
-        indexTemplate(ReactDOM.renderToString(Header()))
+        indexTemplate(ReactDOM.renderToString(App()))
+    )
+})
+
+app.get('/auth', (req,res)=>{
+    const code = req.query.code;
+    res.send(
+        //в корень шаблон указываем рендер react-компонентов
+        indexTemplate(ReactDOM.renderToString(App()))
     )
 })
 

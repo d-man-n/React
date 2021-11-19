@@ -11,7 +11,10 @@ interface IUserBlockProps {
 
 export function UserBlock({ avtarSrc, username }: IUserBlockProps) {
     return (
-        <a className={styles.userBox}>
+        <a 
+            href="https://www.reddit.com/api/v1/authorize?client_id=jdMgHZZxAN9ZS8PLfIkSBQ&response_type=code&state=randem_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity" 
+            className={styles.userBox}
+        >
             <div className={styles.avatarBox}>
                 {avtarSrc
                     ? <img src={avtarSrc} alt="user" className={styles.avatarImage} />
@@ -20,7 +23,7 @@ export function UserBlock({ avtarSrc, username }: IUserBlockProps) {
             </div>
 
             <div className={styles.username}>
-                <Break />
+                <Break size={8} />
                 <Text size={20} color={username? EColor.black : EColor.grey99} >{username || 'Аноним'} </Text>
             </div>
         </a>

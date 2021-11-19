@@ -1,5 +1,6 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals')
+const nodeExternals = require('webpack-node-externals');
+const { DefinePlugin } = require('webpack');
 
 const NODE_ENV = process.env.NODE_ENV;
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
@@ -8,7 +9,7 @@ module.exports = {
     target: 'node',
     mode: NODE_ENV ? NODE_ENV : 'development',
     resolve: {
-        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', ".css"]
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
     },
     entry: path.resolve(__dirname, '../src/server/server.js'),
     output: {
@@ -18,14 +19,14 @@ module.exports = {
     externals: [nodeExternals()],
     module: {
         rules: [
-            {
-                test: /\.[tj]sx?$/,
-                use: ['ts-loader']
-            },
-            {    
-                test: /\.css$/,
-                use: [ 
-                    {
+        {
+            test: /\.[tj]sx?$/,
+            use: ['ts-loader']
+        },
+        {    
+            test: /\.css$/,
+            use: [ 
+                {
                     loader: 'css-loader',
                     options: { 
                             //включит настройки модуля лоадера
@@ -35,12 +36,13 @@ module.exports = {
                                 //как будет называться новый селектор
                                 localIdentName: '[name]__[local]--[hash:base64:5]'
                             },
-                            // ollyLocals: true,
+                            //css-loader не собирал стили на сервер глобально - нужен только селектор
+                            onlyLocals: true
                         }
-                    },
-                ],
-                exclude: GLOBAL_CSS_REGEXP
-            },
+                },
+            ],
+            exclude: GLOBAL_CSS_REGEXP
+        },
         {
             test: GLOBAL_CSS_REGEXP,
             use: ['css-loader']
@@ -49,5 +51,6 @@ module.exports = {
     },
     optimization: {
         minimize: false,
-    }
+    },
+    plugins: [new DefinePlugin({'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`})]
 }

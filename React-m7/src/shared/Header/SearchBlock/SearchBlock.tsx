@@ -5,7 +5,7 @@ import { UserBlock } from './UserBlock';
 export function SearchBlock() {
     return(
         <div className={styles.searchBlock}>
-            {/* <UserBlock/> */}
+            <UserBlock/>
         </div>
     );
 }
