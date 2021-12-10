@@ -5,7 +5,11 @@ import { TextContent } from './TextContent';
 import { Menu } from './Menu';
 import { Controls } from './Controls';
 
-export function Card() {
+interface ICard {
+    data?: Array<{}>;
+}
+
+export function Card( props: ICard ) {
     return(
         <li className={styles.card}>
             <TextContent />

@@ -2,25 +2,23 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { tokenContext } from "../shared/context/tokenContext";
 
-interface IUserData {
-    name?: string;
-    iconImg?: string;
+interface IPostsData {
+    children?: Array<{}>;
 }
 
-export function useUserData() {
-    const [data, setData] = useState<IUserData>({});
+export function usePostsData() {
+    const [posts, setPosts] = useState<IPostsData>({});
     const token = useContext(tokenContext);
 
     useEffect(() => {
-        axios.get('https://oauth.reddit.com/api/v1/me', {
+        axios.get('https://oauth.reddit.com/best', {
             headers: {Authorization: `bearer ${token}`}
         })
         .then((resp) => {
-            const userData = resp.data;
-
-            setData({name: userData.name, iconImg: userData.icon_img});
+            const postsData = resp.data.data;
+            setPosts(postsData);
         })
         .catch(console.log);
     }, [token])
-    return [data];  
+    return [posts];  
 }
