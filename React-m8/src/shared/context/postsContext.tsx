@@ -1,10 +1,21 @@
 import React from 'react';
 import { usePostsData } from '../../hooks/usePostsData';
 
-export interface IPostsContextData {
-    children?: Array<{}>;
+
+interface IPostsItems {
+    id: string;
+    author: string;
+    title: string;
+    selftext: string;
+    url: string;
 }
-export const postsContext = React.createContext<IPostsContextData>({});
+interface IPosts {
+    data: IPostsItems[];
+}
+export interface IPostsContextData {
+    posts?: IPosts[];
+}
+export const postsContext = React.createContext<IPostsContextData>([]);
 
 export function PostsContextProvider({ children }: { children: React.ReactNode}) {
     const [posts] = usePostsData();
