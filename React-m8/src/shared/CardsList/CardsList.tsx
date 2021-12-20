@@ -11,13 +11,14 @@ export function CardsList() {
 
     return(
         <ul className={styles.cardsList}>
-
-            {/* {posts.children &&
-                posts.children.map(el => {
-                    return (<Card />)
+            {
+                posts.map((el) => {
+                    return (
+                        <Card post={el}/>
+                    )
                 })
-            } */}
-            <Card />
+            }
+
         </ul>
     );
 }

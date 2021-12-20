@@ -5,8 +5,12 @@ import { TextContent } from './TextContent';
 import { Menu } from './Menu';
 import { Controls } from './Controls';
 
+interface ICardItems {
+    [n: string]: string;
+}
+
 interface ICard {
-    data?: Array<{}>;
+    post?: { data: ICardItems };
 }
 
 export function Card( props: ICard ) {

@@ -3,21 +3,15 @@ import axios from 'axios';
 import { tokenContext } from "../shared/context/tokenContext";
 
 interface IPostsItems {
-    id: string;
-    author: string;
-    title: string;
-    selftext: string;
-    url: string;
+    [n: string]: string;
 }
-interface IPosts {
-    data: IPostsItems[];
-}
+
 interface IPostsData {
-    posts?: IPosts[];
+    posts?: { data: IPostsItems };
 }
 
 export function usePostsData() {
-    const [posts, setPosts] = useState<IPostsData>({});
+    const [posts, setPosts] = useState<Array<IPostsData>>([]);
 
     const token = useContext(tokenContext);
 
