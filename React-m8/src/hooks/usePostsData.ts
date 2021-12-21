@@ -2,12 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { tokenContext } from "../shared/context/tokenContext";
 
-interface IPostsItems {
-    [n: string]: string;
-}
-
-interface IPostsData {
-    posts?: { data: IPostsItems };
+export interface IPostsData {
+    id: string;
+    author: string;
+    title: string;
+    selftext: string;
+    url: string;
+    created: number;
 }
 
 export function usePostsData() {
@@ -20,8 +21,19 @@ export function usePostsData() {
             headers: {Authorization: `bearer ${token}`}
         })
         .then((resp) => {
-            const postsData = resp.data.data.children;
-            console.log(postsData)
+            const postsData = resp.data.data.children.map((el: {data: {[n: string]: string | boolean | number}})=> {
+                console.log(el)
+                return {
+                    id: el.data.id,
+                    author: el.data.author,
+                    title: el.data.title,
+                    selftext: el.data.selftext,
+                    url: el.data.url,
+                    created: el.data.created,
+                }
+            });
+
+            // console.log(postsData)
             setPosts(postsData);
         })
         .catch(console.log);
